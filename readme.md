@@ -100,8 +100,11 @@ ADDITIONAL NOTES: MODIFY THE CONFIGURATION FILES AS NEEDED TO MATCH YOUR ENVIRON
 
 ------Contributor
 Ranjith R
+
 ranjith.ofcl@gmail.com
+
 https://www.instagram.com/
+
 https://www.linkedin.com/in/ranjith-r-a852b0165/
 
 
