@@ -8,11 +8,11 @@ Overview:
 This project aims to achieve real-time data streaming from PostgreSQL to Snowflake using Kafka. By leveraging Kafka as a messaging system, Debezium for change data capture (CDC), and Python for data processing.
 
 Technologies Used:
-    * PostgreSQL
-    * Snowflake
-    * Kafka
-    * Debezium
-    * Python
+ * PostgreSQL
+ * Snowflake
+ * Kafka
+ * Debezium
+ * Python
 
 Before you begin:
 Make sure to setup the below requirements before beginning this project setup.
