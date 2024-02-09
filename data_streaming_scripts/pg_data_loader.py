@@ -21,9 +21,8 @@ def psg_connection(dbname, user, password, host, port):
 def load_genre_data(conn):
     try:
         cur = conn.cursor() 
-        df = pd.read_csv('genre.csv') #Loading the data from "genre.csv"
+        df = pd.read_csv(r'F:\Project\kafka_data_streaming\sample_data\Genre.csv') #Loading the data from "genre.csv"
         print(df)
-
         #Iterate each rows of values in dataframe df
         for index, value in df.iterrows():
             #PostgreSQL query to insert row values (genreid and genrename) into the table "genre"
@@ -37,7 +36,7 @@ def load_genre_data(conn):
 def load_customer_data(conn):
     try:
         cur = conn.cursor() 
-        df = pd.read_csv('Customer.csv') #Loading the data from "customer.csv"
+        df = pd.read_csv(r'F:\Project\kafka_data_streaming\sample_data\Customer.csv') #Loading the data from "customer.csv"
         print(df)
 
         #Iterate each rows of values in dataframe df
@@ -60,9 +59,8 @@ def load_customer_data(conn):
 def load_invoice_data(conn):
     try:
         cur = conn.cursor() 
-        df = pd.read_csv('Invoice.csv') #Loading the data from "customer.csv"
+        df = pd.read_csv(r'F:\Project\kafka_data_streaming\sample_data\Invoice.csv') #Loading the data from "customer.csv"
         print(df)
-
         #Iterate each rows of values in dataframe df
         for index, value in df.iterrows():
             #PostgreSQL query to insert row values (genreid and genrename) into the table "genre"
@@ -87,8 +85,8 @@ host = os.environ.get("postgres_host")
 port = os.environ.get("postgres_port")
 
 conn = psg_connection(dbname, user, password, host, port)
-# load_genre_data(conn)
-# load_customer_data(conn)
+load_genre_data(conn)
+load_customer_data(conn)
 load_invoice_data(conn)
 
 
