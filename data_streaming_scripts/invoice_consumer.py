@@ -55,13 +55,13 @@ def ingestion(values, conn):
         target_table = "INVOICE"
         
         # in order to decide that we need to insert or update or delete in Snowlake table, weneed to fine the record is already present in that table or not, 
-        # For that, querying the count(*) from genre table where genreid is received genreid from message
+        # For that, querying the count(*) from invoice table where invoiceid is received invoice from the message
         cursor.execute(f'SELECT COUNT(*) FROM {target_database}.{target_schema}.{target_table} WHERE INVOICEID in ({invoiceid})')
         result = cursor.fetchone()[0]
 
         #Defining Logic to deciode the process Insert or Update or Delete
         # 1. If the record is already present in SNowflake, and if it's a delete transaction,THEN deleting the record from snowflake
-        # 2. If the record is already present in Snowflake, and if it's not a delete transaction,THEN update the value (genrename)
+        # 2. If the record is already present in Snowflake, and if it's not a delete transaction,THEN update the values based on invoiceid
         # 3. If the record is not present in snowflake, and if it's not a delete transaction, THEN insert the record to snowflake table
 
         if result != 0 and del_or_not == 'true':
@@ -90,7 +90,7 @@ def ingestion(values, conn):
         print(f"Error: {e}")
 
 def initiate_kafka(conn):
-    print("\n!!!KAFKA STARTED TO LISTEN FOR STREAMING OF INVOICE\n")
+    print("\n Kafka consumer is now actively listening for incoming messages from Invoice table.\n")
     # Gettings the messages from consumer and getting the value content of the message.
     # Once we got the values in bytes format, decoding the bytes to string. 
     # Once it's done, loading the string to dictionary and passing the value to ingestion function to ingest into snowflake

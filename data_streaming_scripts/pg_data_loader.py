@@ -18,21 +18,6 @@ def psg_connection(dbname, user, password, host, port):
         print(e)
         return None
 
-def load_genre_data(conn):
-    try:
-        cur = conn.cursor() 
-        df = pd.read_csv(r'F:\Project\kafka_data_streaming\sample_data\Genre.csv') #Loading the data from "genre.csv"
-        print(df)
-        #Iterate each rows of values in dataframe df
-        for index, value in df.iterrows():
-            #PostgreSQL query to insert row values (genreid and genrename) into the table "genre"
-            cur.execute("insert into genre (genreid, genrename) values (%s, %s)", (value['genreid'], value['genrename']))
-            conn.commit() #Commiting the changes
-            conn.close
-        print("Data Loaded Successfully.")
-    except Exception as e:
-        print("Error: ", e)
-
 def load_customer_data(conn):
     try:
         cur = conn.cursor() 
@@ -85,7 +70,6 @@ host = os.environ.get("postgres_host")
 port = os.environ.get("postgres_port")
 
 conn = psg_connection(dbname, user, password, host, port)
-load_genre_data(conn)
 load_customer_data(conn)
 load_invoice_data(conn)
 
